@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Bank</title>
+</head>
+<body>
+    <h1>Blood Bank Management</h1>
+    <h2>Name: Swaraj Ravindra Ghawale</h2>
+    <h2>Register No.: 22MCI0018</h2>
+    
+    <form action="/" method="POST">
+        <h2>Add Donor</h2>
+        <input type="text" name="donor_name" placeholder="Donor Name" required>
+        <input type="text" name="gender" placeholder="Gender"required>
+        <input type="text" name="blood_group" placeholder="Blood Group" required>
+        <input type="text" name="city" placeholder="City" required>
+        <button type="submit" name="submit" value="add">Add Donor</button>
+        
+    </form>
+    <form action="/" method="POST">
+        <h2>Update Donor</h2>
+        <input type="text" name="donor_id" placeholder="Donor ID" required> 
+        <input type="text" name="donor_name" placeholder="Donor Name" required>
+        <input type="text" name="gender" placeholder="Gender" required>
+        <input type="text" name="blood_group" placeholder="Blood Group" required>
+        <input type="text" name="city" placeholder="City" required>
+        <button type="submit" name="submit" value="update">Update Donor</button>
+    </form>
+    
+    <h2>Registered Donors List</h2>
+    <table border ="2">
+        <thead>
+        <tr>
+            <th>Donor ID</th>
+            <th>Donor Name</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+     <tbody>
+        {% for donor in donors %}
+        <tr>
+            <td>{{ donor.id }}</td>
+            <td>{{ donor.data.donor_name }}</td>
+            <td>{{ donor.data.gender }}</td>
+            <td>{{ donor.data.blood_group }}</td>
+            <td>{{ donor.data.city }}</td>
+            <td>
+                <form action="/" method="POST" style="display: inline;">
+                    <input type="hidden" name="donor_id" value="{{ donor.id }}">
+                    <button type="submit" name="submit" value="delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+     </tbody>
+    </table>
+</body>
+</html>
